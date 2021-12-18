@@ -1,0 +1,46 @@
+<div class="container">
+    <h3 mat-dialog-title> Address: {{data.name}}</h3>
+  
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  
+      <div class="form">
+        <mat-form-field color="accent">
+          <input disabled matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+  
+     
+  
+      <div class="form">
+          <mat-form-field color="accent">
+            <input matInput placeholder="name" [(ngModel)]="data.name" name="name">
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+
+          </mat-form-field>
+      </div>
+
+
+      <div class="form">
+        
+
+        <mat-form-field color="accent">
+            <mat-select [(ngModel)]="data.address.id" name="addressId">
+              <mat-option *ngFor="let add of addresss" [value]="add.id">
+                {{add.description}}
+              </mat-option>
+            </mat-select>
+    
+            <!-- <mat-error *ngIf="formGroup.invalid">{{getErrorMessage()}}</mat-error> -->
+          </mat-form-field>
+    </div>
+  
+     
+  
+      <div mat-dialog-actions>
+        <!-- [type]="submit" -->
+        <button mat-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      </div>
+    </form>
+  </div>

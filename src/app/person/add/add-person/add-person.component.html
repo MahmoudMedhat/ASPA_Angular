@@ -1,0 +1,39 @@
+<div class="container">
+    <h3 mat-dialog-title>Add new Person</h3>
+  
+    <form class="mat-dialog-content" (ngSubmit)="submit" [formGroup]="formGroup">
+  
+     
+  
+      <!--Textarea for demo purposes-->
+      <div class="form">
+        <mat-form-field color="accent">
+          <textarea matInput #input class="form-control" placeholder="name" formControlName="name" name="name" required ></textarea>
+          <mat-error *ngIf="formGroup.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+
+        
+
+        <mat-form-field color="accent">
+          <mat-select formControlName="address" name="address">
+            <mat-option *ngFor="let add of addresss" [value]="add.id">
+              {{add.description}}
+            </mat-option>
+          </mat-select>
+  
+          <mat-error *ngIf="formGroup.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+  
+    
+  
+      <div mat-dialog-actions>
+        <!-- [type]="submit" -->
+        <button mat-button   [disabled]="!formGroup.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      </div>
+    </form>
+  </div>
